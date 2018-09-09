@@ -25,6 +25,10 @@ class PinCodeViewController: UIViewController {
     
     private func initViews() {
         initPinCodeTextField()
+        
+        DispatchQueue.main.async {
+            self.pinCodeTextField.becomeFirstResponder()
+        }
     }
     
     private func initPinCodeTextField() {

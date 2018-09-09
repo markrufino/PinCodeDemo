@@ -11,6 +11,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private static var pinCodeViewIsActive: Bool = false
     var window: UIWindow?
 
 
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        AppDelegate.showPinCodeViewController()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -35,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        showPinCodeViewController()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -47,7 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
-    private func showPinCodeViewController() {
+    static func showPinCodeViewController() {
+        
+        guard !AppDelegate.pinCodeViewIsActive else {
+            return
+        }
+        
+        AppDelegate.pinCodeViewIsActive = true
+        
         let pinCodeVc = PinCodeViewController()
         let pinCodeVcWindow = UIWindow(frame: UIScreen.main.bounds)
         let appWindow = UIApplication.shared.keyWindow!
@@ -57,10 +65,17 @@ extension AppDelegate {
         pinCodeVcWindow.makeKeyAndVisible()
         
         pinCodeVc.onPinCodeEntrySuccessAction = {
-            pinCodeVcWindow.isHidden = true
-            appWindow.makeKeyAndVisible()
+            
+            UIView.animate(withDuration: 1.0, animations: {
+                pinCodeVcWindow.alpha = 0.0
+            }, completion: { (_) in
+                pinCodeVcWindow.isHidden = true
+                appWindow.makeKeyAndVisible()
+            })
+            
+            AppDelegate.pinCodeViewIsActive = false
+            
         }
-        
     }
     
 }
