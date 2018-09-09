@@ -58,8 +58,8 @@
 		5C437AB821456CE700F4AA2F /* PinCodeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				5C437ACB21456D0600F4AA2F /* PinCodeViewController */,
 				5C437AB921456CE700F4AA2F /* AppDelegate.swift */,
+				5C437ACB21456D0600F4AA2F /* PinCodeViewController */,
 				5C437ABB21456CE700F4AA2F /* ViewController.swift */,
 				5C437ABD21456CE700F4AA2F /* Main.storyboard */,
 				5C437AC021456CE800F4AA2F /* Assets.xcassets */,

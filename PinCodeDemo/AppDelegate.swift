@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        showPinCodeViewController()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -44,3 +45,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    
+    private func showPinCodeViewController() {
+        let pinCodeVc = PinCodeViewController()
+        let pinCodeVcWindow = UIWindow(frame: UIScreen.main.bounds)
+        let appWindow = UIApplication.shared.keyWindow!
+        
+        pinCodeVcWindow.rootViewController = pinCodeVc
+        appWindow.addSubview(pinCodeVcWindow)
+        pinCodeVcWindow.makeKeyAndVisible()
+        
+        pinCodeVc.onPinCodeEntrySuccessAction = {
+            pinCodeVcWindow.isHidden = true
+            appWindow.makeKeyAndVisible()
+        }
+        
+    }
+    
+}
