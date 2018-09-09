@@ -8,4 +8,4 @@ can present itself from any view.
 ### Objectives of putting out this demos:
 1. Create a mini knowledge base for myself and others that might find these useful.
 2. Get feedback for improvement purposes.
-3. Try out ideas that keep buzzing in my mind.
+3. Try out ideas that keep on buzzing in my mind.
